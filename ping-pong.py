@@ -17,9 +17,19 @@ class Player(GameSprite):
             self.rect.y -= self.speed
         if keys[K_s] and self.rect.y < win_width - 80:
             self.rect.y += self.speed
+
+class Player2(GameSprite):
+    def update(self):
+        keys = key.get_pressed()
+        if keys[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if keys[K_DOWN] and self.rect.y < win_width - 80:
+            self.rect.y += self.speed
+
 win_width = 700
 win_height = 500
 racket = Player('racket.png',10,400,5)
+racket2 = Player2("racket.png", win_width-36,400,5)
 background = transform.scale(image.load('white_bkg.png'),(win_width,win_height))
 win = display.set_mode((win_width,win_height))
 display.set_caption('pp2')
@@ -31,4 +41,6 @@ while game:
     win.blit(background, (0, 0))
     racket.update()
     racket.drop()
+    racket2.update()
+    racket2.drop()
     display.update()
